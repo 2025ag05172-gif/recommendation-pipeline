@@ -1,0 +1,12 @@
+{
+  "interactions_in": 99000,
+  "duplicate_interactions_removed": 200,
+  "missing_genres_filled": 67,
+  "release_year_imputed": 0,
+  "interactions_out": 67006,
+  "users_out": 4298,
+  "items_out": 2395,
+  "share_kept": 0.6768,
+  "min_user_interactions": 5,
+  "min_item_interactions": 5
+}

@@ -1,0 +1,229 @@
+{
+  "dataset": "movietweetings",
+  "tables": {
+    "users": {
+      "rows_in": 16556,
+      "rows_valid": 16554,
+      "rows_rejected": 2,
+      "reject_ratio": 0.00012
+    },
+    "items": {
+      "rows_in": 10510,
+      "rows_valid": 10507,
+      "rows_rejected": 3,
+      "reject_ratio": 0.00029
+    },
+    "interactions": {
+      "rows_in": 100200,
+      "rows_valid": 99000,
+      "rows_rejected": 1200,
+      "reject_ratio": 0.01198
+    }
+  },
+  "checks": [
+    {
+      "table": "users",
+      "check": "missing_user_id",
+      "rule": "user_id must not be null",
+      "severity": "error",
+      "failed": 0
+    },
+    {
+      "table": "users",
+      "check": "user_id_not_numeric",
+      "rule": "user_id must be an integer string",
+      "severity": "error",
+      "failed": 0
+    },
+    {
+      "table": "users",
+      "check": "duplicate_user_id",
+      "rule": "user_id must be unique (first copy kept)",
+      "severity": "error",
+      "failed": 2
+    },
+    {
+      "table": "items",
+      "check": "missing_item_id",
+      "rule": "item_id must not be null",
+      "severity": "error",
+      "failed": 0
+    },
+    {
+      "table": "items",
+      "check": "item_id_not_numeric",
+      "rule": "item_id must be an integer string",
+      "severity": "error",
+      "failed": 0
+    },
+    {
+      "table": "items",
+      "check": "duplicate_item_id",
+      "rule": "item_id must be unique (first copy kept)",
+      "severity": "error",
+      "failed": 1
+    },
+    {
+      "table": "items",
+      "check": "missing_title",
+      "rule": "title must not be null",
+      "severity": "error",
+      "failed": 2
+    },
+    {
+      "table": "items",
+      "check": "missing_genres",
+      "rule": "genres empty, filled with 'Unknown' later",
+      "severity": "warning",
+      "failed": 68
+    },
+    {
+      "table": "items",
+      "check": "missing_release_year",
+      "rule": "no year in title, imputed later",
+      "severity": "warning",
+      "failed": 1
+    },
+    {
+      "table": "interactions",
+      "check": "missing_user_id",
+      "rule": "user_id must not be null",
+      "severity": "error",
+      "failed": 0
+    },
+    {
+      "table": "interactions",
+      "check": "missing_item_id",
+      "rule": "item_id must not be null",
+      "severity": "error",
+      "failed": 0
+    },
+    {
+      "table": "interactions",
+      "check": "missing_rating",
+      "rule": "rating must not be null",
+      "severity": "error",
+      "failed": 200
+    },
+    {
+      "table": "interactions",
+      "check": "missing_timestamp",
+      "rule": "timestamp must not be null",
+      "severity": "error",
+      "failed": 0
+    },
+    {
+      "table": "interactions",
+      "check": "user_id_not_numeric",
+      "rule": "user_id must be an integer string",
+      "severity": "error",
+      "failed": 0
+    },
+    {
+      "table": "interactions",
+      "check": "item_id_not_numeric",
+      "rule": "item_id must be an integer string",
+      "severity": "error",
+      "failed": 0
+    },
+    {
+      "table": "interactions",
+      "check": "rating_not_numeric",
+      "rule": "rating must be numeric (wrong data type)",
+      "severity": "error",
+      "failed": 200
+    },
+    {
+      "table": "interactions",
+      "check": "timestamp_not_integer",
+      "rule": "timestamp must be an integer unix time (wrong data type)",
+      "severity": "error",
+      "failed": 0
+    },
+    {
+      "table": "interactions",
+      "check": "rating_out_of_range",
+      "rule": "rating must be in [0, 10]",
+      "severity": "error",
+      "failed": 200
+    },
+    {
+      "table": "interactions",
+      "check": "invalid_timestamp",
+      "rule": "timestamp must be between 2010-01-01 and now",
+      "severity": "error",
+      "failed": 200
+    },
+    {
+      "table": "interactions",
+      "check": "orphan_user",
+      "rule": "user_id must exist in users (referential integrity)",
+      "severity": "error",
+      "failed": 200
+    },
+    {
+      "table": "interactions",
+      "check": "orphan_item",
+      "rule": "item_id must exist in items (referential integrity)",
+      "severity": "error",
+      "failed": 200
+    },
+    {
+      "table": "interactions",
+      "check": "duplicate_user_item",
+      "rule": "one rating per user and item; older copy dropped in preparation",
+      "severity": "warning",
+      "failed": 200
+    }
+  ],
+  "injected_defect_check": {
+    "injected": 1406,
+    "caught": 1406,
+    "by_kind": {
+      "duplicate_item_id": {
+        "injected": 1,
+        "caught": 1
+      },
+      "duplicate_user_id": {
+        "injected": 2,
+        "caught": 2
+      },
+      "duplicate_user_item": {
+        "injected": 200,
+        "caught": 200
+      },
+      "missing_genres": {
+        "injected": 1,
+        "caught": 1
+      },
+      "missing_rating": {
+        "injected": 200,
+        "caught": 200
+      },
+      "missing_title": {
+        "injected": 2,
+        "caught": 2
+      },
+      "orphan_item": {
+        "injected": 200,
+        "caught": 200
+      },
+      "orphan_user": {
+        "injected": 200,
+        "caught": 200
+      },
+      "rating_not_numeric": {
+        "injected": 200,
+        "caught": 200
+      },
+      "rating_out_of_range": {
+        "injected": 200,
+        "caught": 200
+      },
+      "timestamp_in_future": {
+        "injected": 200,
+        "caught": 200
+      }
+    }
+  }
+}
