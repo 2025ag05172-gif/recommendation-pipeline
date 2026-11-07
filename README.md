@@ -22,6 +22,27 @@ Pipeline: **ingestion -> validation -> preparation -> transformation -> feature 
 | Tests | `tests/` (17 tests) |
 | Final report | `reports/final_report_2025AG05172.pdf` |
 
+## Execution evidence
+
+Screenshots of a successful end-to-end run on a Mac (Python 3.12) are in `docs/screenshots/`.
+
+| Stage | Screenshot |
+|---|---|
+| Tests (17 passed) | `docs/screenshots/01_pytest_17_passed.jpg` |
+| Full pipeline run | `docs/screenshots/02_pipeline_run.jpg` |
+| Validation report | `docs/screenshots/03_validation_report.jpg` |
+| Rejected rows with reasons | `docs/screenshots/04_rejected_rows.jpg` |
+| Feature catalog | `docs/screenshots/05_feature_catalog.jpg` |
+| Model comparison | `docs/screenshots/06_model_comparison.jpg` |
+| Orchestration: Prefect task log | `docs/screenshots/07_prefect_task_log.jpg` |
+| Orchestration: successful run (Completed, 12 task runs) | `docs/screenshots/08_prefect_run_completed.jpg` |
+| Orchestration: task graph | `docs/screenshots/09_prefect_task_graph.jpg` |
+| MLflow runs and metrics | `docs/screenshots/10_mlflow_runs.jpg` |
+
+![Prefect run completed](docs/screenshots/08_prefect_run_completed.jpg)
+
+![Prefect task graph](docs/screenshots/09_prefect_task_graph.jpg)
+
 ## Setup (Mac)
 
 Python 3.10 or newer is needed (`python3 --version`). If yours is older: `brew install python@3.12` and use `python3.12` below.
