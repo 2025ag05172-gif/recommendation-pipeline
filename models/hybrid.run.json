@@ -1,0 +1,10 @@
+{
+  "model": "hybrid",
+  "run_id": "974e2751d5ef4dde96b7f446bd374a9d",
+  "params": {
+    "weight_item_knn_cf": 0.5,
+    "weight_svd_cf": 0.25,
+    "weight_content_based": 0.15,
+    "weight_popularity": 0.1
+  }
+}

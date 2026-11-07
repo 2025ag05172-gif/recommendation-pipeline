@@ -1,0 +1,21 @@
+flowchart TB
+  P{{"Prefect flow: dags/recommendation_flow.py<br/>runs every stage, handles dependencies and retries"}}
+  A["Public dataset<br/>MovieTweetings 100K"] --> B["1 Ingestion<br/>raw CSV: users, items, interactions"]
+  B --> C["2 Validation<br/>row rules + pandera schema"]
+  C -- rejected rows --> X[("data/errors<br/>+ validation report")]
+  C -- valid rows --> D["3 Preparation<br/>dedupe, fill, standardise, k-core filter"]
+  D --> E["4 Transformation<br/>time split, interaction matrix,<br/>user activity, item popularity"]
+  E --> F["5 Feature management<br/>registry + FeatureStore + catalog"]
+  subgraph T["6 Model training (parallel)"]
+    direction TB
+    G1["Popularity<br/>baseline"]
+    G2["SVD CF"]
+    G3["Item-kNN CF"]
+    G4["Content-based"]
+  end
+  F --> T
+  T --> H["6 Hybrid<br/>weighted blend"]
+  T -. params, models .-> M[("MLflow tracking")]
+  H --> I["7 Evaluation on time-based test set<br/>P@K, R@K, NDCG@K, Coverage, Diversity, RMSE, MAE"]
+  I --> R["reports/model_comparison + MLflow metrics"]
+  P -. orchestrates .-> B

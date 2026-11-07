@@ -1,0 +1,8 @@
+{
+  "model": "content_based",
+  "run_id": "32c8d562905c4a88b2d24c39982f2444",
+  "params": {
+    "item_representation": "idf weighted genre vector",
+    "user_representation": "liked genre shares"
+  }
+}

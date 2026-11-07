@@ -1,0 +1,8 @@
+{
+  "model": "item_knn_cf",
+  "run_id": "39527044b318438ab4aa51c8019f3083",
+  "params": {
+    "similarity": "cosine on liked items",
+    "shrinkage": 200.0
+  }
+}

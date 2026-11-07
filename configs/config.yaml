@@ -1,0 +1,73 @@
+# Roll No: 2025AG05172 | DM4ML Lab Assignment 2
+project: recommendation-pipeline
+roll_no: "2025AG05172"
+seed: 42
+
+dataset:
+  name: movietweetings        # movietweetings | movielens100k | synthetic
+  movietweetings:
+    base_url: https://raw.githubusercontent.com/sidooms/MovieTweetings/master/snapshots/100K
+    rating_min: 0
+    rating_max: 10
+    relevance_threshold: 8    # rating >= 8 counts as "liked"
+    timestamp_min: "2010-01-01"
+  movielens100k:
+    url: https://files.grouplens.org/datasets/movielens/ml-100k.zip
+    rating_min: 1
+    rating_max: 5
+    relevance_threshold: 4
+    timestamp_min: "1996-01-01"
+  synthetic:
+    n_users: 400
+    n_items: 250
+    n_ratings: 9000
+    rating_min: 1
+    rating_max: 5
+    relevance_threshold: 4
+    timestamp_min: "2015-01-01"
+
+paths:
+  raw: data/raw
+  interim: data/interim
+  processed: data/processed
+  features: data/features
+  errors: data/errors
+  models: models
+  reports: reports
+  logs: logs
+
+ingestion:
+  inject_faults: true         # adds a small, logged set of defects so the validation stage has something to catch
+  fault_rate: 0.002           # per defect type, as a share of interaction rows
+
+validation:
+  max_error_ratio: 0.05       # pipeline stops if more than 5% of a table is rejected
+
+preparation:
+  min_user_interactions: 5
+  min_item_interactions: 5
+
+split:
+  test_fraction: 0.2          # most recent 20% of interactions (by timestamp) form the test set
+
+features:
+  bayes_prior_strength: 10
+  recency_half_life_days: 30
+
+training:
+  validation_fraction: 0.15   # most recent 15% of train is used to pick hyper-parameters
+  svd:
+    n_factors_grid: [4, 8, 16, 32]
+    explicit_factors: 16
+    bias_damping: 10
+  item_knn:
+    shrinkage_grid: [10, 20, 50, 100, 200]
+  hybrid:
+    weights: {item_knn_cf: 0.5, svd_cf: 0.25, content_based: 0.15, popularity: 0.10}   # fixed, not tuned on the test set
+
+evaluation:
+  ks: [5, 10]
+  headline_k: 10
+
+mlflow:
+  experiment: recommendation-pipeline

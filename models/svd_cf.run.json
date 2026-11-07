@@ -1,0 +1,10 @@
+{
+  "model": "svd_cf",
+  "run_id": "5b6caa7fbbbb4622a397139d843dd9a3",
+  "params": {
+    "n_factors": 4,
+    "explicit_factors": 16,
+    "bias_damping": 10,
+    "seed": 42
+  }
+}

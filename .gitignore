@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+mlflow.db
+mlartifacts/
+mlruns/
+logs/*.log
+data/raw/*
+data/interim/*
+data/processed/*
+data/features/*
+models/*.joblib
+.DS_Store
+!**/.gitkeep

@@ -1,0 +1,3 @@
+raw_row,user_id,twitter_id,error_reason
+16554,1,18405182,duplicate_user_id
+16555,2,31260677,duplicate_user_id

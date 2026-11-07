@@ -1,0 +1,12 @@
+{
+  "users": 4136,
+  "items": 2373,
+  "interaction_rows": 53604,
+  "genres": 23,
+  "feature_columns": {
+    "user": 8,
+    "item": 31,
+    "user_genre_profile": 23,
+    "interaction": 5
+  }
+}

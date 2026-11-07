@@ -1,0 +1,8 @@
+{
+  "model": "popularity",
+  "run_id": "a50ad36dcd954d32b2a06ab75f1a7930",
+  "params": {
+    "ranking": "train rating count",
+    "rating_prediction": "bayesian item mean"
+  }
+}
